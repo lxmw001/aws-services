@@ -15,7 +15,7 @@ public class ProcessContactHandler implements RequestHandler<SNSEvent, Void> {
         String id = attributes.get("id").getValue();
 
         Contact contact = DynamoService.getContact(id);
-        contact.setStatus("PROCESSED");
+        contact.setProcessed();
 
         DynamoService.updateContact(contact);
         return null;

@@ -37,7 +37,7 @@ public class DynamoService {
     public static Contact saveContact(Contact contact) {
         initDynamoDbClient();
 
-        contact.setStatus("CREATED");
+        contact.setCreated();
 
         // Save the contact
         mapper.save(contact);

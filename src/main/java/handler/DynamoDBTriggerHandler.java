@@ -3,6 +3,7 @@ package handler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
+import enums.Status;
 import model.Contact;
 import services.SnsService;
 import software.amazon.awssdk.services.sns.model.MessageAttributeValue;
@@ -25,7 +26,7 @@ public class DynamoDBTriggerHandler implements RequestHandler<DynamodbEvent, Voi
                  String lastName = record.getDynamodb().getNewImage().get("lastName").getS();
                  String status = record.getDynamodb().getNewImage().get("status").getS();
 
-                Contact contact = new Contact(id, firstName, lastName, status);
+                Contact contact = new Contact(id, firstName, lastName, Status.valueOf(status));
 
                 String message = "Contact created: \n" + contact;
 
